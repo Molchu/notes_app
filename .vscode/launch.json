@@ -33,7 +33,7 @@
         "-s",
         "tests/unit/test_user.py::test_create_user_valid"
       ],                                // cambia el nombre del test aquí
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}",      // raíz del proyecto
       "env": { "PYTHONPATH": "${workspaceFolder}" },
       "console": "integratedTerminal",
       "justMyCode": true

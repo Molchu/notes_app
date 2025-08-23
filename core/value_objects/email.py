@@ -1,8 +1,8 @@
 # core/value_objects/email.py
 
-from __future__ import annotations
+from __future__ import annotations # para usar Email como tipo dentro de su propia definición (Python 3.7+)
 from dataclasses import dataclass
-import re
+import re # para validación con expresiones regulares
 
 from core.exceptions import DomainValidationError
 
