@@ -1,8 +1,5 @@
-# core/value_objects/color_hex.py
-
 from dataclasses import dataclass
 from core.exceptions import DomainValidationError
-
 
 @dataclass(frozen=True)
 class ColorHex:
@@ -20,3 +17,6 @@ class ColorHex:
 
     def __str__(self):
         return self.value.upper()
+
+# Amarillo “pergamino” (tema medieval minimalista)
+DEFAULT_NOTE_COLOR = ColorHex("#FDE047")

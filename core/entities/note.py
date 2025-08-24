@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Optional
 
 from core.exceptions import DomainValidationError
-from core.value_objects.color_hex import ColorHex  # lo crearemos en value_objects
+from core.value_objects.color_hex import ColorHex, DEFAULT_NOTE_COLOR  # lo crearemos en value_objects
 # Si aún no tienes ColorHex, temporalmente puedes usar Optional[str] y validar luego.
 
 
@@ -15,10 +15,10 @@ MAX_CONTENT_LEN = 20_000 # contenido no puede exceder 20,000 caracteres
 @dataclass
 class Note:
     id: int
-    owner_id: int                      # referencia al usuario (dominio, no ORM)
+    user_id: int                      # referencia al usuario (dominio, no ORM)
     title: str
     content: str
-    color: Optional[ColorHex] = None   # Value Object para color HEX (#RRGGBB)
+    color: Optional[ColorHex | str] = None  # Value Object para color HEX (#RRGGBB)
     group_id: Optional[int] = None     # permite agrupar notas
     is_archived: bool = False
     is_pinned: bool = False
@@ -30,11 +30,11 @@ class Note:
         self._validate_title(self.title)
         self._validate_content(self.content)
 
-        if self.color is not None and not isinstance(self.color, ColorHex):
-            raise DomainValidationError("color debe ser un ColorHex válido")
+        if self.color is None:
+            self.color = DEFAULT_NOTE_COLOR
 
-        if self.owner_id <= 0:
-            raise DomainValidationError("owner_id inválido")
+        if self.user_id <= 0:
+            raise DomainValidationError("user_id inválido")
 
         if self.group_id is not None and self.group_id <= 0:
             raise DomainValidationError("group_id inválido")

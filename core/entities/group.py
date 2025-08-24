@@ -14,7 +14,7 @@ MAX_DESC_LEN = 500
 @dataclass
 class Group:
     id: int
-    owner_id: int               # referencia al usuario que creó el grupo
+    user_id: int               # referencia al usuario que creó el grupo
     name: str
     description: Optional[str] = None
     color: Optional[str] = None  # HEX opcional (#RRGGBB). Si lo deseas, usar ValueObject ColorHex
@@ -31,8 +31,8 @@ class Group:
         if self.color and not self._is_valid_hex(self.color):
             raise DomainValidationError("El color debe ser un HEX válido (#RRGGBB)")
 
-        if self.owner_id <= 0:
-            raise DomainValidationError("owner_id inválido")
+        if self.user_id <= 0:
+            raise DomainValidationError("user_id inválido")
 
     # --- Comportamientos de dominio ---
     def rename(self, new_name: str) -> None:
