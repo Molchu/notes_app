@@ -1,5 +1,3 @@
-# core/value_objects/email.py
-
 from __future__ import annotations # para usar Email como tipo dentro de su propia definición (Python 3.7+)
 from dataclasses import dataclass
 import re # para validación con expresiones regulares
@@ -78,11 +76,11 @@ class Email:
         """
         Devuelve una versión ofuscada para logs: ju****@dominio.com
         """
-        l = self.local
-        if len(l) <= 2:
-            lmask = "*" * len(l)
+        local = self.local
+        if len(local) <= 2:
+            lmask = "*" * len(local)
         else:
-            lmask = l[:2] + "*" * (len(l) - 2)
+            lmask = local[:2] + "*" * (len(local) - 2)
         return f"{lmask}@{self.domain}"
 
     def __str__(self) -> str:

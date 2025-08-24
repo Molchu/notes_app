@@ -8,8 +8,8 @@ from core.value_objects.color_hex import ColorHex  # lo crearemos en value_objec
 # Si aún no tienes ColorHex, temporalmente puedes usar Optional[str] y validar luego.
 
 
-MAX_TITLE_LEN = 120
-MAX_CONTENT_LEN = 20_000
+MAX_TITLE_LEN = 120 # título no puede exceder 120 caracteres
+MAX_CONTENT_LEN = 20_000 # contenido no puede exceder 20,000 caracteres
 
 
 @dataclass
@@ -22,8 +22,8 @@ class Note:
     group_id: Optional[int] = None     # permite agrupar notas
     is_archived: bool = False
     is_pinned: bool = False
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=datetime.now)
+    updated_at: datetime = field(default_factory=datetime.now)
 
     # --- Validaciones de invariante de la Entidad ---
     def __post_init__(self):
@@ -89,7 +89,7 @@ class Note:
 
     # --- Helpers internos ---
     def _touch(self) -> None:
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.now()
 
     @staticmethod
     def _validate_title(title: str) -> None:
