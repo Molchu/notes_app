@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Notas Medievales{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tipografías con aire medieval -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="page">
+  <header class="banner">
+    <div class="brand">
+      <div class="seal" aria-hidden="true"></div>
+      <div class="title">📜 Notas Medievales</div>
+    </div>
+    <nav aria-label="principal">
+      <a href="{{ url_for('users.register_form') }}">Registrarse</a>
+      <a href="{{ url_for('notes.list_notes_html') }}">Mis notas</a>
+      <a href="{{ url_for('users.login_form') }}">Entrar</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes" role="status" aria-live="polite">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% block hero %}{% endblock %}
+
+    <div class="rule" aria-hidden="true"></div>
+
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer class="foot">
+    <div>Hecho con 🍞 y 🛡️ — Estilo pergamino</div>
+  </footer>
+</body>
+</html>

@@ -57,6 +57,9 @@ class Note:
         self.color = new_color
         self._touch()
 
+    def color_value(self) -> str:
+        return str(self.color) if self.color else str(DEFAULT_NOTE_COLOR)
+
     def move_to_group(self, new_group_id: Optional[int]) -> None:
         # None = sin grupo
         if new_group_id is not None and new_group_id <= 0:

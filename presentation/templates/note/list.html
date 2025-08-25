@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Mis Notas{% endblock %}
+{% block content %}
+<h2>Mis notas</h2>
+<a href="{{ url_for('note.create') }}">➕ Crear nota</a>
+<ul>
+  {% for note in notes %}
+   <li>
+      <strong>{{ note.title }}</strong> - {{ note.preview(50) }}
+      <a href="{{ url_for('note.detail', note_id=note.id) }}">Ver</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

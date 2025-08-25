@@ -2,13 +2,36 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Python Debugger: Flask",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "app.py",
+        "FLASK_DEBUG": "1"
+      },
+      "args": [
+        "run",
+        "--no-debugger",
+        "--no-reload"
+      ],
+      "jinja": true,
+      "autoStartBrowser": false
+    },
+    {
       "name": "Debug Todos los Tests",
       "type": "debugpy",
       "request": "launch",
       "module": "pytest",
-      "args": ["-q", "-s", "tests"],     // ejecuta todos los tests
-      "cwd": "${workspaceFolder}",       // raíz del proyecto
-      "env": { "PYTHONPATH": "${workspaceFolder}" },
+      "args": [
+        "-q",
+        "-s",
+        "tests"
+      ], // ejecuta todos los tests
+      "cwd": "${workspaceFolder}", // raíz del proyecto
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
       "console": "integratedTerminal",
       "justMyCode": true
     },
@@ -17,9 +40,15 @@
       "type": "debugpy",
       "request": "launch",
       "module": "pytest",
-      "args": ["-q", "-s", "${file}"],   // ejecuta solo el archivo abierto
+      "args": [
+        "-q",
+        "-s",
+        "${file}"
+      ], // ejecuta solo el archivo abierto
       "cwd": "${workspaceFolder}",
-      "env": { "PYTHONPATH": "${workspaceFolder}" },
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
       "console": "integratedTerminal",
       "justMyCode": true
     },
@@ -32,9 +61,11 @@
         "-q",
         "-s",
         "tests/unit/test_user.py::test_create_user_valid"
-      ],                                // cambia el nombre del test aquí
-      "cwd": "${workspaceFolder}",      // raíz del proyecto
-      "env": { "PYTHONPATH": "${workspaceFolder}" },
+      ], // cambia el nombre del test aquí
+      "cwd": "${workspaceFolder}", // raíz del proyecto
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
       "console": "integratedTerminal",
       "justMyCode": true
     }

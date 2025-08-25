@@ -20,7 +20,8 @@ class SqlAlchemyUserRepository(UserRepository):
         return to_domain_user(m) if m else None
 
     def get_by_email(self, email: str) -> Optional[User]:
-        m = self.session.query(UserModel).filter_by(email=email).one_or_none()
+        email_str = str(email)
+        m = self.session.query(UserModel).filter_by(email=email_str).one_or_none()
         return to_domain_user(m) if m else None
 
     def get_by_username(self, username: str) -> Optional[User]:
