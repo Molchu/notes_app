@@ -60,7 +60,7 @@ def login_post():
     with get_session() as s:
         repo = SqlAlchemyUserRepository(s)
         hasher = BcryptPasswordHasher()
-        uc = LoginUser(user_repo=repo, password_hasher=hasher)
+        uc = LoginUser(user_repo=repo, password_checker=hasher.verify)
         try:
             user = uc.execute(username_or_email, password)
             # Sesión sencilla (si luego usas Flask-Login, reemplaza esto)
